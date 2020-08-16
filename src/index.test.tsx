@@ -10,7 +10,7 @@ it('works', async () => {
     })
   );
 
-  const useData = createDataHook(async ({ foo, context }) => {
+  const useData = createDataHook('key', async ({ foo, context }) => {
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     return {
@@ -64,7 +64,7 @@ it('throw if calls are out of order', async () => {
     params: { foo: 'bar' },
   });
 
-  const useData = createDataHook(async () => {
+  const useData = createDataHook('key', async () => {
     await new Promise((resolve) => setTimeout(resolve, 0));
     return {};
   });
@@ -110,10 +110,10 @@ it('throw if calls are out of order', async () => {
   );
 });
 
-it('throw if no context is found', async () => {
+it('throws if no context is found', async () => {
   const { createDataHook } = createHookFactory(() => ({}));
 
-  const useData = createDataHook(async () => {
+  const useData = createDataHook('key', async () => {
     await new Promise((resolve) => setTimeout(resolve, 0));
     return {};
   });
@@ -155,4 +155,24 @@ it('throw if no context is found', async () => {
   expect(error).toMatchInlineSnapshot(
     `[Error: Could not find next-data-hooks context. TODO: add shortlink to docs]`
   );
+});
+
+it('throws if there is a duplicate key', async () => {
+  const { createDataHook } = createHookFactory(() => ({}));
+
+  createDataHook('key', async () => {
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    return {};
+  });
+
+  try {
+    createDataHook('key', async () => {
+      await new Promise((resolve) => setTimeout(resolve, 0));
+      return {};
+    });
+  } catch (e) {
+    expect(e).toMatchInlineSnapshot(
+      `[Error: You already have data hook registered with key "key". TODO: add shortlink to docs]`
+    );
+  }
 });

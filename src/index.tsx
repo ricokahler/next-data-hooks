@@ -10,17 +10,14 @@ interface DataHooksContextValue {
 function createHookFactory<Variables>(
   contextToVariables: (context: GetStaticPropsContext) => Variables
 ) {
-  let index = 0;
   const dataFns: { [key: string]: (variables: Variables) => any } = {};
 
   const DataHooksContext = createContext<DataHooksContextValue | null>(null);
 
   function createDataHook<R>(
+    key: string,
     getData: (variables: Variables) => R | Promise<R>
   ) {
-    let key = index;
-    index += 1;
-
     function useHook(): Unwrap<R> {
       const context = useContext(DataHooksContext);
       if (!context) {
@@ -38,6 +35,11 @@ function createHookFactory<Variables>(
       return context[key];
     }
 
+    if (dataFns[key]) {
+      throw new Error(
+        `You already have data hook registered with key "${key}". TODO: add shortlink to docs`
+      );
+    }
     dataFns[key] = getData;
 
     return useHook;
