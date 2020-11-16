@@ -1,4 +1,4 @@
-# next-data-hooks · [![codecov](https://codecov.io/gh/ricokahler/next-data-hooks/branch/master/graph/badge.svg)](https://codecov.io/gh/ricokahler/next-data-hooks) [![github status checks](https://badgen.net/github/checks/ricokahler/next-data-hooks)](https://github.com/ricokahler/next-data-hooks/actions) [![bundlephobia](https://badgen.net/bundlephobia/minzip/next-data-hooks)](https://bundlephobia.com/result?p=next-data-hooks)
+# next-data-hooks · [![codecov](https://codecov.io/gh/ricokahler/next-data-hooks/branch/main/graph/badge.svg)](https://codecov.io/gh/ricokahler/next-data-hooks) [![github status checks](https://badgen.net/github/checks/ricokahler/next-data-hooks/main)](https://github.com/ricokahler/next-data-hooks/actions) [![bundlephobia](https://badgen.net/bundlephobia/minzip/next-data-hooks)](https://bundlephobia.com/result?p=next-data-hooks)
 
 > Co-located, static data hooks in next.js
 
