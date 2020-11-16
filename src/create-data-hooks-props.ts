@@ -24,7 +24,7 @@ export default function createDataHooksProps(hooks: DataHook[]) {
 
     return {
       props: {
-        __dataHooksContextValue: Object.fromEntries(entries),
+        nextDataHooks: Object.fromEntries(entries),
       },
     };
   }

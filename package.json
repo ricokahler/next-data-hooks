@@ -8,7 +8,8 @@
     "lint": "eslint src --ext .ts,.tsx,.js,.jsx",
     "build": "node ./scripts/build",
     "clean": "rm -rf dist",
-    "types": "tsc"
+    "types": "tsc",
+    "typecheck": "tsc --noEmit --emitDeclarationOnly false"
   },
   "author": {
     "email": "ricokahler@me.com",

@@ -21,7 +21,7 @@ it('returns a getStaticProps function that pulls and populates props', async () 
   expect(result).toMatchInlineSnapshot(`
     Object {
       "props": Object {
-        "__dataHooksContextValue": Object {
+        "nextDataHooks": Object {
           "Bar": Object {
             "bar": "bar",
             "context": Object {

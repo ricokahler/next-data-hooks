@@ -7,17 +7,19 @@ const packageJson = require('../package.json');
 const args = process.argv.slice(2);
 
 async function build() {
-  console.log('Cleaning…');
-  await exec('npm run clean');
+  if (!args.includes('--no-tests')) {
+    console.log('Cleaning…');
+    await exec('npm run clean');
 
-  console.log('Installing…');
-  await exec('npm i');
+    console.log('Installing…');
+    await exec('npm i');
 
-  console.log('Testing…');
-  await exec('npm t');
+    console.log('Testing…');
+    await exec('npm t');
 
-  console.log('Linting…');
-  await exec('npm run lint');
+    console.log('Linting…');
+    await exec('npm run lint');
+  }
 
   console.log('Compiling types…');
   await exec('npm run types');
