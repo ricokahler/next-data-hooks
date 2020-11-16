@@ -3,8 +3,8 @@ module.exports = {
   coverageDirectory: 'coverage',
   testPathIgnorePatterns: [
     'node_modules',
-    '<rootDir>.*/dist',
-    '<rootDir>.*/examples',
-    '<rootDir>.*/test-app',
+    '<rootDir>/dist/.*',
+    '<rootDir>/examples/.*',
+    '<rootDir>/test-app/.*',
   ],
 };
