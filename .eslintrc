@@ -1,6 +1,7 @@
 {
   "extends": "react-app",
   "rules": {
-    "import/no-anonymous-default-export": "off"
+    "import/no-anonymous-default-export": "off",
+    "jsx-a11y/anchor-is-valid": "off"
   }
 }
