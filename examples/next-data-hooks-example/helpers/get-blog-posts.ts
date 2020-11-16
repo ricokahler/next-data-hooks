@@ -36,7 +36,11 @@ const blogPosts = [
  * This could be your real API.
  */
 async function getBlogPosts() {
+  // This side-effect is used in the e2e test and is used to determine if this
+  // file was excluded from the bundle. Since it's a side-effect, it won't be
+  // shaken from the build by default
   console.log('get-blog-posts-side-effect');
+
   await new Promise((resolve) => setTimeout(resolve, 0));
   return blogPosts;
 }
