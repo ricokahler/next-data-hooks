@@ -10,5 +10,5 @@
     "emitDeclarationOnly": true,
     "forceConsistentCasingInFileNames": true
   },
-  "exclude": ["**/*.test.tsx", "dist/**/*"]
+  "exclude": ["**/*.test.tsx", "dist/**/*", "examples/**/*", "test-app/**/*"]
 }

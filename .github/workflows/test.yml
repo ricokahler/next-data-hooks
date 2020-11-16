@@ -1,6 +1,6 @@
 name: Run Tests
 on:
-  - push
+  - pull_request
 
 jobs:
   test:
@@ -12,4 +12,5 @@ jobs:
           node-version: '12.x'
       - run: npm i
       - run: npm run lint
+      - run: npm run typecheck
       - run: npm t
