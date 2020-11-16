@@ -8,7 +8,7 @@ Writing one large query per page doesn't organize well. Asynchronous data fetchi
 
 Why can't static data queries be written closer to the component too?
 
-`next-data-hooks` is a small and simple lib that lets you write React hooks for static data queries in next.js by lifting static props to React Context.
+`next-data-hooks` is a small and simple lib that lets you write React hooks for static data queries in next.js by lifting static props into React Context.
 
 ## Installation
 
