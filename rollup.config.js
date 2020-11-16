@@ -6,7 +6,7 @@ const external = [/^@babel\/runtime/, 'react', 'next'];
 
 export default [
   {
-    input: './src/index.tsx',
+    input: './src/index.ts',
     output: {
       file: './dist/index.js',
       format: 'umd',
@@ -23,9 +23,9 @@ export default [
       babel({
         babelrc: false,
         presets: [
-          '@babel/preset-env',
+          ['@babel/preset-env', { targets: { node: true } }],
           '@babel/preset-typescript',
-          '@babel/preset-react',
+          ['@babel/preset-react'],
         ],
         babelHelpers: 'bundled',
         extensions,
@@ -34,7 +34,7 @@ export default [
     external,
   },
   {
-    input: './src/index.tsx',
+    input: './src/index.ts',
     output: {
       file: './dist/index.esm.js',
       format: 'esm',
@@ -54,5 +54,30 @@ export default [
       }),
     ],
     external,
+  },
+  {
+    input: './src/babel.ts',
+    output: {
+      file: './dist/babel.js',
+      format: 'cjs',
+      sourcemap: true,
+      exports: 'auto',
+    },
+    external: ['@babel/core'],
+    plugins: [
+      resolve({
+        extensions,
+        modulesOnly: true,
+      }),
+      babel({
+        babelrc: false,
+        presets: [
+          '@babel/preset-typescript',
+          ['@babel/preset-env', { targets: { node: true } }],
+        ],
+        babelHelpers: 'bundled',
+        extensions,
+      }),
+    ],
   },
 ];

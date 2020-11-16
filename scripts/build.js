@@ -29,6 +29,14 @@ async function build() {
     encoding: 'hex',
   });
 
+  const readme = await fs.promises.readFile(
+    path.resolve(__dirname, '../README.md')
+  );
+  await fs.promises.writeFile(
+    path.resolve(__dirname, '../dist/README.md'),
+    readme
+  );
+
   console.log('Writing package.json…');
   const {
     devDependencies,
