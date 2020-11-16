@@ -1,6 +1,6 @@
 import exec from '@ricokahler/exec';
 
-jest.setTimeout(60 * 1000);
+jest.setTimeout(3 * 60 * 1000);
 
 const conditionalIt = process.env.CI ? it : it.skip;
 
