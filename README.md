@@ -4,9 +4,11 @@
 
 ## Why?
 
-Writing one large query per page doesn't organize well. Asynchronous data fetching frameworks like apollo, relay, and react-query already allow you to write the queries closer to the component, why can't static query be written closer to the component too?
+Writing one large query per page doesn't organize well. Asynchronous data fetching frameworks like apollo, relay, and react-query already allow you to write the queries closer to the component.
 
-`next-data-hooks` is a small lib that lets you write React hooks for static data queries in next.js by lifting static props to React Context.
+Why can't static data queries be written closer to the component too?
+
+`next-data-hooks` is a small and simple lib that lets you write React hooks for static data queries in next.js by lifting static props to React Context.
 
 ## Installation
 
@@ -50,7 +52,7 @@ At the root, add a `.babelrc` file that contains the following:
 }
 ```
 
-This enables code elimination for client side code.
+This enables code elimination to eliminate server-side code on the client.
 
 ## Usage
 
@@ -58,13 +60,15 @@ This enables code elimination for client side code.
 
 ```tsx
 import { createDataHook } from 'next-data-hooks';
-import getBlogPost from '..';
 
-//       this context is the GetStaticPropsContext from 'next' 👇
+// this context is the GetStaticPropsContext from 'next'
+//                                                             👇
 export const useBlogPost = createDataHook('BlogPost', async (context) => {
   const slug = context.params?.slug as string;
+
   // do something async to grab the data your component needs
-  const blogPost = await getBlogPost(slug);
+  const blogPost = /* ... */;
+
   return blogPost;
 });
 ```
@@ -108,3 +112,11 @@ function BlogPostComponent() {
   );
 }
 ```
+
+## API
+
+## Recommended patterns and folder structures
+
+## Code elimination
+
+The nice thing about

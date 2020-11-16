@@ -1,0 +1,16 @@
+{
+  "name": "next-data-hooks-example",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "next": "10.0.1",
+    "react": "17.0.1",
+    "react-dom": "17.0.1",
+    "next-data-hooks": "latest"
+  }
+}

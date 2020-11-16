@@ -4,9 +4,9 @@ import NextDataHooksContext from './next-data-hooks-context';
 /**
  * Injects the data from data hooks into React Context.
  */
-function NextDataHooksProvider({ __dataHooksContextValue, children }: any) {
+function NextDataHooksProvider({ nextDataHooks, children }: any) {
   return (
-    <NextDataHooksContext.Provider value={__dataHooksContextValue}>
+    <NextDataHooksContext.Provider value={nextDataHooks}>
       {children}
     </NextDataHooksContext.Provider>
   );
