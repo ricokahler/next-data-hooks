@@ -5,7 +5,7 @@ interface NextDataHooksContextValue {
 }
 
 /**
- * Context used by `next-data-hooks` to pull static data
+ * React Context used by `next-data-hooks` to pull static data.
  */
 const NextDataHooksContext = createContext<NextDataHooksContextValue | null>(
   null

@@ -3,7 +3,14 @@ import createDataHook from './create-data-hook';
 
 type DataHook = ReturnType<typeof createDataHook>;
 
-export default function createDataHooksProps(hooks: DataHook[]) {
+/**
+ * Given an array of data hooks created with `createDataHooks`, this function
+ * returns a function that be used as a `getStaticProps` implementation.
+ *
+ * @param hooks an array of data hooks created with `createDataHooks`
+ * @return a `getStaticProps` implementation
+ */
+function createDataHooksProps(hooks: DataHook[]) {
   const hookKeys: { [key: string]: boolean } = {};
   for (const hook of hooks) {
     if (hookKeys[hook.key]) {
@@ -31,3 +38,5 @@ export default function createDataHooksProps(hooks: DataHook[]) {
 
   return getStaticProps;
 }
+
+export default createDataHooksProps;

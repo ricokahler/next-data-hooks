@@ -52,7 +52,7 @@ At the root, add a `.babelrc` file that contains the following:
 }
 ```
 
-This enables code elimination to eliminate server-side code on the client.
+> ⚠️ Don't forget this step. This enables **code elimination** to eliminate server-side code in client code.
 
 ## Usage
 
@@ -115,8 +115,60 @@ function BlogPostComponent() {
 
 ## API
 
-## Recommended patterns and folder structures
+<!-- DOCSTART -->
 
-## Code elimination
+### `createDataHook(key, getData)`
 
-The nice thing about
+Creates a data hook.
+
+**Params**
+
+| Name      | Type                                                    | Description                                                               |
+| --------- | ------------------------------------------------------- | ------------------------------------------------------------------------- |
+| `key`     | `string`                                                | The key to uniquely identify this data hooks from other on the same page. |
+| `getData` | `(variables: GetStaticPropsContext) => R \| Promise<R>` | An async for data that will be called via `getStaticProps` in next.js     |
+
+**Return**
+
+A hook that can be used in any component within the page's React tree
+
+```
+(() => Unwrap<R>) & { getData: (variables: GetStaticPropsContext) => R | Promise<R>; key: string; }
+```
+
+### `createDataHooksProps(hooks)`
+
+Given an array of data hooks created with `createDataHooks`, this function
+returns a function that be used as a `getStaticProps` implementation.
+
+**Params**
+
+| Name    | Type         | Description                                           |
+| ------- | ------------ | ----------------------------------------------------- |
+| `hooks` | `DataHook[]` | an array of data hooks created with `createDataHooks` |
+
+**Return**
+
+a `getStaticProps` implementation
+
+```
+(context: GetStaticPropsContext) => Promise<{ props: { nextDataHooks: any; }; }>
+```
+
+### `NextDataHooksProvider(nextDataHooks)`
+
+Injects the data from data hooks into React Context. Place this in `_app`
+
+**Params**
+
+| Name            | Type  | Description |
+| --------------- | ----- | ----------- |
+| `nextDataHooks` | `any` |             |
+
+**Return**
+
+```
+JSX.Element
+```
+
+<!-- DOCEND -->

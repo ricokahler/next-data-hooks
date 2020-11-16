@@ -2,7 +2,7 @@ import React from 'react';
 import NextDataHooksContext from './next-data-hooks-context';
 
 /**
- * Injects the data from data hooks into React Context.
+ * Injects the data from data hooks into React Context. Place this in `_app`
  */
 function NextDataHooksProvider({ nextDataHooks, children }: any) {
   return (
