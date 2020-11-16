@@ -13,4 +13,6 @@ jobs:
       - run: npm i
       - run: npm run lint
       - run: npm run typecheck
-      - run: npm t
+      - run: npm t -- --coverage
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1
