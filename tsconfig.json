@@ -10,5 +10,6 @@
     "emitDeclarationOnly": true,
     "forceConsistentCasingInFileNames": true
   },
-  "exclude": ["**/*.test.tsx", "dist/**/*", "examples/**/*", "test-app/**/*"]
+  "exclude": ["**/*.test.tsx"],
+  "include": ["./src/**/*.tsx", "./src/**/*.ts"]
 }
