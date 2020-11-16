@@ -10,6 +10,10 @@ Why can't static data queries be written closer to the component too?
 
 `next-data-hooks` is a small and simple lib that lets you write React hooks for static data queries in next.js by lifting static props into React Context.
 
+## Example
+
+See [the example in this repo](https://github.com/ricokahler/next-data-hooks/tree/main/examples/next-data-hooks-example) for some ideas on how to organize your static data call using this hook.
+
 ## Installation
 
 1. Install
