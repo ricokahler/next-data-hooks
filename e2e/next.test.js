@@ -4,6 +4,7 @@ jest.setTimeout(60 * 1000);
 
 it('builds the app and removes dead code via the babel plugin', async () => {
   await exec('rm -rf test-app');
+  await exec('npm run build');
   await exec(
     'create-next-app test-app --example https://github.com/ricokahler/next-data-hooks --example-path examples/next-data-hooks-example -y'
   );
