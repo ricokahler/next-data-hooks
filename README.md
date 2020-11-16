@@ -24,7 +24,7 @@ or
 yarn add next-data-hooks
 ```
 
-2. Add Provider to `_app`
+2. Add Provider to `_app.tsx` or `_app.js`
 
 ```tsx
 import { AppProps } from 'next/app';
