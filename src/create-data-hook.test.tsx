@@ -4,6 +4,18 @@ import { ErrorBoundary } from 'react-error-boundary';
 import createDataHook from './create-data-hook';
 import NextDataHooksContext from './next-data-hooks-context';
 
+// https://github.com/facebook/react/issues/11098#issuecomment-523977830
+let spy;
+
+beforeEach(() => {
+  spy = jest.spyOn(console, 'error');
+  spy.mockImplementation(() => {});
+});
+
+afterEach(() => {
+  spy.mockRestore();
+});
+
 it('returns a hook that pulls from the given key', () => {
   const useData = createDataHook('DataKey', () => null);
   const dataHandler = jest.fn();
