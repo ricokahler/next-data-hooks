@@ -36,6 +36,7 @@ const blogPosts = [
  * This could be your real API.
  */
 async function getBlogPosts() {
+  console.log('get-blog-posts-side-effect');
   await new Promise((resolve) => setTimeout(resolve, 0));
   return blogPosts;
 }
