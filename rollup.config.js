@@ -47,7 +47,11 @@ export default [
       }),
       babel({
         babelrc: false,
-        presets: ['@babel/preset-typescript', '@babel/preset-react'],
+        presets: [
+          ['@babel/preset-env', { targets: 'node 10 and not IE 11' }],
+          '@babel/preset-typescript',
+          '@babel/preset-react',
+        ],
         plugins: ['@babel/plugin-transform-runtime'],
         babelHelpers: 'runtime',
         extensions,
