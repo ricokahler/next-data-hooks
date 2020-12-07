@@ -2,8 +2,6 @@ import { useContext } from 'react';
 import { GetStaticPropsContext } from 'next';
 import NextDataHooksContext from './next-data-hooks-context';
 
-type Unwrap<T> = T extends Promise<infer U> ? U : T;
-
 const stub = () => {
   throw new Error(
     'Create data hook was run in the browser. See https://github.com/ricokahler/next-data-hooks#code-elimination'
@@ -19,9 +17,9 @@ const stub = () => {
  */
 function createDataHook<R>(
   key: string,
-  getData: (variables: GetStaticPropsContext) => R | Promise<R>
+  getData: (variables: GetStaticPropsContext) => Promise<R>
 ) {
-  function useData(): Unwrap<R> {
+  function useData(): R {
     const dataHooksContext = useContext(NextDataHooksContext);
     if (!dataHooksContext) {
       throw new Error(
