@@ -1,0 +1,6 @@
+{
+  "extends": ["config:base", "schedule:earlyMondays"],
+  "groupName": "all",
+  "rebaseWhen": "behind-base-branch",
+  "automerge": true
+}
