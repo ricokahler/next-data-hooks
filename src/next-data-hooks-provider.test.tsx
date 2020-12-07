@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
+import { GetStaticPropsContext } from 'next';
 import { create, act } from 'react-test-renderer';
 import createDataHook from './create-data-hook';
-import createDataHooksProps from './create-data-hooks-props';
+import getDataHooksProps from './get-data-hooks-props';
 import NextDataHooksProvider from './next-data-hooks-provider';
 
 it('Injects the data from data hooks into React Context.', async () => {
@@ -18,8 +19,11 @@ it('Injects the data from data hooks into React Context.', async () => {
     return null;
   }
 
-  const getStaticProps = createDataHooksProps([useData]);
-  const { props } = await getStaticProps({ params: { hello: 'world' } });
+  const mockContext: GetStaticPropsContext = { params: { mock: 'context' } };
+  const props = await getDataHooksProps({
+    context: mockContext,
+    hooks: [useData],
+  });
 
   act(() => {
     create(
