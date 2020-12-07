@@ -5,7 +5,9 @@ import NextDataHooksContext from './next-data-hooks-context';
 type Unwrap<T> = T extends Promise<infer U> ? U : T;
 
 const stub = () => {
-  throw new Error('Create data hook was run in the browser. TODO ADD LINK');
+  throw new Error(
+    'Create data hook was run in the browser. See https://github.com/ricokahler/next-data-hooks#code-elimination'
+  );
 };
 
 /**
