@@ -9,8 +9,7 @@
     "build": "node ./scripts/build",
     "clean": "rm -rf dist",
     "types": "tsc",
-    "typecheck": "tsc --noEmit --emitDeclarationOnly false",
-    "docgen": "babel-node -x .ts ./scripts/docgen"
+    "typecheck": "tsc --noEmit --emitDeclarationOnly false"
   },
   "author": {
     "email": "ricokahler@me.com",
@@ -24,7 +23,6 @@
     "@babel/preset-env": "^7.12.1",
     "@babel/preset-react": "^7.12.5",
     "@babel/preset-typescript": "^7.12.1",
-    "@ricokahler/ast-docgen": "0.0.0-3373b5510",
     "@ricokahler/exec": "^1.0.0",
     "@rollup/plugin-babel": "^5.2.1",
     "@rollup/plugin-node-resolve": "^9.0.0",
