@@ -10,6 +10,7 @@ conditionalIt(
     await exec('rm -rf test-app');
     await exec('npm run build -- --no-tests');
     await exec(
+      // TODO: make this pull from the current branch instead of from `main`
       'create-next-app test-app --example https://github.com/ricokahler/next-data-hooks --example-path examples/next-data-hooks-example -y'
     );
     await exec('yarn --cwd ./test-app add ../dist');
