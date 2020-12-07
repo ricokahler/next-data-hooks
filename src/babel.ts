@@ -1,8 +1,5 @@
 import { Visitor, types as t } from '@babel/core';
 
-/**
- * TODO: docs
- */
 const babelPlugin = (): { visitor: Visitor } => ({
   visitor: {
     CallExpression(path) {
