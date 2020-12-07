@@ -1,6 +1,6 @@
 {
   "name": "next-data-hooks",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Co-located, static data hooks in next.js",
   "private": true,
   "scripts": {
