@@ -1,7 +1,7 @@
 {
   "name": "next-data-hooks",
   "version": "0.2.0",
-  "description": "Co-located, static data hooks in next.js",
+  "description": "Use `getStaticProps` as react hooks",
   "private": true,
   "scripts": {
     "test": "jest",
