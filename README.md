@@ -8,11 +8,11 @@ Writing one large query per page doesn't organize well. Asynchronous data fetchi
 
 Why can't static data queries be written closer to the component too?
 
-`next-data-hooks` is a small and simple lib that lets you write React hooks for static data queries in next.js by lifting static props into React Context.
+`next-data-hooks` is a small and simple lib that lets you write React hooks for static data queries in Next.js by lifting static props into React Context.
 
 ## Example
 
-See [the example in this repo](https://github.com/ricokahler/next-data-hooks/tree/main/examples/next-data-hooks-example) for some ideas on how to organize your static data call using this hook.
+See [the example in this repo](https://github.com/ricokahler/next-data-hooks/tree/main/examples/next-data-hooks-example) for some ideas on how to organize your static data calls using this hook.
 
 ## Installation
 
@@ -76,10 +76,10 @@ const useBlogPost = createDataHook('BlogPost', async (context) => {
   return blogPost;
 });
 
-export default useBlogPost
+export default useBlogPost;
 ```
 
-2. Use the data hook in a component. Add it to a static prop in an array with other data hooks (if applicable).
+2. Use the data hook in a component. Add it to a static prop in an array with other data hooks to compose them downward.
 
 ```tsx
 import ComponentThatUsesDataHooks from '..';
@@ -125,8 +125,7 @@ export const getStaticPaths: GetStaticPaths = async (context) => {
 export const getStaticProps: GetStaticProps = async (context) => {
   const dataHooksProps = await getDataHooksProps({
     context,
-    // this is an array of all data hooks from the `dataHooks`
-    // static prop. there can be more than one
+    // this is an array of all data hooks from the `dataHooks` static prop.
     //                             👇👇👇
     dataHooks: BlogPostComponent.dataHooks,
   });
@@ -135,7 +134,8 @@ export const getStaticProps: GetStaticProps = async (context) => {
     props: {
       // spread the props required by next-data-hooks
       ...dataHooksProps,
-      // add additional props here
+
+      // add additional props to Next.js here
     },
   };
 };
