@@ -1,6 +1,6 @@
 import { getDataHooksProps } from 'next-data-hooks';
 import { GetStaticProps } from 'next';
-import BlogPost, { useBlogPost } from 'routes/blogs/blog-post';
+import BlogPost from 'routes/blogs/blog-post';
 import getBlogPosts from 'helpers/get-blog-posts';
 
 export const getStaticPaths = async () => {
@@ -14,7 +14,7 @@ export const getStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async (context) => {
   const dataHooksProps = await getDataHooksProps({
     context,
-    hooks: [useBlogPost],
+    dataHooks: BlogPost.dataHooks,
   });
 
   return {

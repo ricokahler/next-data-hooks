@@ -2,12 +2,12 @@ import Link from 'next/link';
 import { createDataHook } from 'next-data-hooks';
 import getBlogPosts from 'helpers/get-blog-posts';
 
-export const useBlogPostIndex = createDataHook('BlogPostIndex', async () => {
+const useBlogPostIndex = createDataHook('BlogPostIndex', async () => {
   const blogPosts = await getBlogPosts();
   return blogPosts.map(({ title, slug }) => ({ title, slug }));
 });
 
-function BlogPost() {
+function BlogPostIndex() {
   const blogPostIndex = useBlogPostIndex();
 
   return (
@@ -30,4 +30,6 @@ function BlogPost() {
   );
 }
 
-export default BlogPost;
+BlogPostIndex.dataHooks = [useBlogPostIndex];
+
+export default BlogPostIndex;
