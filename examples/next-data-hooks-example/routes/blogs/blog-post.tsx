@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { createDataHook } from 'next-data-hooks';
 import getBlogPosts from 'helpers/get-blog-posts';
 
-export const useBlogPost = createDataHook('BlogPost', async (context) => {
+const useBlogPost = createDataHook('BlogPost', async (context) => {
   const slug = context.params?.slug as string;
   const blogPosts = await getBlogPosts();
   const blogPost = blogPosts.find((blogPost) => blogPost.slug === slug)!;
@@ -23,5 +23,7 @@ function BlogPost() {
     </>
   );
 }
+
+BlogPost.dataHooks = [useBlogPost];
 
 export default BlogPost;
