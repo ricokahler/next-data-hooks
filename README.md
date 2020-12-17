@@ -66,7 +66,7 @@ At the root, add a `.babelrc` file that contains the following:
 import { createDataHook } from 'next-data-hooks';
 
 // this context is the GetStaticPropsContext from 'next'
-//                                                             👇
+//                                                      👇
 const useBlogPost = createDataHook('BlogPost', async (context) => {
   const slug = context.params?.slug as string;
 
@@ -127,7 +127,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
     context,
     // this is an array of all data hooks from the `dataHooks`
     // static prop. there can be more than one
-    //             👇👇👇
+    //                             👇👇👇
     dataHooks: BlogPostComponent.dataHooks,
   });
 
