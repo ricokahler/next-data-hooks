@@ -6,7 +6,7 @@ import getDataHooksProps from './get-data-hooks-props';
 import NextDataHooksProvider from './next-data-hooks-provider';
 
 it('Injects the data from data hooks into React Context.', async () => {
-  const useData = createDataHook('DataKey', () => ({ hello: 'world' }));
+  const useData = createDataHook('DataKey', async () => ({ hello: 'world' }));
   const dataHandler = jest.fn();
 
   function Foo() {
@@ -22,7 +22,7 @@ it('Injects the data from data hooks into React Context.', async () => {
   const mockContext: GetStaticPropsContext = { params: { mock: 'context' } };
   const props = await getDataHooksProps({
     context: mockContext,
-    hooks: [useData],
+    dataHooks: [useData],
   });
 
   act(() => {

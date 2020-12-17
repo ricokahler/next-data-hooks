@@ -17,7 +17,7 @@ it('returns a getStaticProps function that pulls and populates props', async () 
 
   const result = await getDataHooksProps({
     context: mockContext,
-    hooks: [useFoo, useBar],
+    dataHooks: [useFoo, useBar],
   });
 
   expect(result).toMatchInlineSnapshot(`
@@ -52,7 +52,10 @@ it('throws if it encounters two data hooks with the same key', async () => {
   let caught = false;
 
   try {
-    await getDataHooksProps({ context: mockContext, hooks: [useFoo, useBar] });
+    await getDataHooksProps({
+      context: mockContext,
+      dataHooks: [useFoo, useBar],
+    });
   } catch (e) {
     expect(e).toMatchInlineSnapshot(
       `[Error: Found duplicate hook key "Hook". Ensure all hook keys per \`createDatHooksProps\` call are unique.]`
@@ -72,7 +75,7 @@ it('throws if it the stub function is run', async () => {
   try {
     await getDataHooksProps({
       context: mockContext,
-      hooks: [useFoo],
+      dataHooks: [useFoo],
     });
   } catch (e) {
     caught = true;
