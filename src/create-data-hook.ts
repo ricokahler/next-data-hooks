@@ -26,7 +26,14 @@ function createDataHook<R>(
         'Could not find `NextDataHooksContext`. Ensure `NextDataHooksProvider` is configured correctly.'
       );
     }
-    return dataHooksContext[key];
+    const dataHooksValue = dataHooksContext[key];
+    if (!Object.keys(dataHooksContext).includes(key)) {
+      throw new Error(
+        `Did not find a data hook named "${key}". Ensure it was provided to getDataHooksProps.`
+      );
+    }
+
+    return dataHooksValue;
   }
 
   return Object.assign(useData, {
