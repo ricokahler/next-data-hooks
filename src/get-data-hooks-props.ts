@@ -14,7 +14,12 @@ interface Params {
  */
 async function getDataHooksProps({ hooks, context }: Params) {
   const hookKeys: { [key: string]: boolean } = {};
-  for (const hook of hooks) {
+
+  // we allow the same function reference to be added to the array more than
+  // once so we de-dupe here
+  const deDupedHooks = Array.from(new Set(hooks));
+
+  for (const hook of deDupedHooks) {
     if (hookKeys[hook.key]) {
       throw new Error(
         `Found duplicate hook key "${hook.key}". Ensure all hook keys per \`createDatHooksProps\` call are unique.`
