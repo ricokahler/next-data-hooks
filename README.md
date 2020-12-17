@@ -67,7 +67,7 @@ import { createDataHook } from 'next-data-hooks';
 
 // this context is the GetStaticPropsContext from 'next'
 //                                                             👇
-export const useBlogPost = createDataHook('BlogPost', async (context) => {
+const useBlogPost = createDataHook('BlogPost', async (context) => {
   const slug = context.params?.slug as string;
 
   // do something async to grab the data your component needs
@@ -75,14 +75,47 @@ export const useBlogPost = createDataHook('BlogPost', async (context) => {
 
   return blogPost;
 });
+
+export default useBlogPost
 ```
 
-2. Get the data hooks props and pass it down in `getStaticProps`. Import all data hooks.
+2. Use the data hook in a component. Add it to a static prop in an array with other data hooks (if applicable).
+
+```tsx
+import ComponentThatUsesDataHooks from '..';
+import useBlogPost from '..';
+import useOtherDataHook from '..';
+
+function BlogPostComponent() {
+  const { title, content } = useBlogPost();
+  const { other, data } = useOtherDataHook();
+
+  return (
+    <article>
+      <h1>{title}</h1>
+      <p>{content}</p>
+      <p>
+        {other} {data}
+      </p>
+    </article>
+  );
+}
+
+// compose together other data hooks
+BlogPostComponent.dataHooks = [
+  ...ComponentThatUsesDataHooks.dataHooks,
+  useOtherDataHooks,
+  useBlogPost,
+];
+
+export default BlogPostComponent;
+```
+
+3. Pass the data hooks down in `getStaticProps`.
 
 ```tsx
 import { getDataHooksProps } from 'next-data-hooks';
 import { GetStaticPaths, GetStaticProps } from 'next';
-import { useBlogPost } from '..';
 import BlogPostComponent from '..';
 
 export const getStaticPaths: GetStaticPaths = async (context) => {
@@ -92,44 +125,22 @@ export const getStaticPaths: GetStaticPaths = async (context) => {
 export const getStaticProps: GetStaticProps = async (context) => {
   const dataHooksProps = await getDataHooksProps({
     context,
-    // you can add more than one here
-    //         👇👇👇
-    hooks: [useBlogPost],
+    // this is an array of all data hooks from the `dataHooks`
+    // static prop. there can be more than one
+    //             👇👇👇
+    dataHooks: BlogPostComponent.dataHooks,
   });
 
   return {
     props: {
       // spread the props required by next-data-hooks
       ...dataHooksProps,
+      // add additional props here
     },
   };
 };
 
-export default function BlogPostEntry() {
-  return (
-    <>
-      {/* Note: this component doesn't have to be a direct child of BlogPostEntry */}
-      <BlogPostComponent />
-    </>
-  );
-}
-```
-
-3. Use the data hook in any component under that page.
-
-```tsx
-import { useBlogPost } from '..';
-
-function BlogPostComponent() {
-  const { title, content } = useBlogPost();
-
-  return (
-    <article>
-      <h1>{title}</h1>
-      <p>{content}</p>
-    </article>
-  );
-}
+export default BlogPostComponent;
 ```
 
 ## Useful Patterns
@@ -180,7 +191,7 @@ my-project
 import { createDataHook } from 'next-data-hooks';
 
 // write your data hook in a co-located place
-export const useBlogPostData = createDataHook('BlogPost', async (context) => {
+const useBlogPostData = createDataHook('BlogPost', async (context) => {
   const blogPostData = // get blog post data…
   return blogPostData;
 });
@@ -197,6 +208,8 @@ function BlogPost() {
   );
 }
 
+BlogPost.dataHooks = [useBlogPostData]
+
 export default BlogPost;
 ```
 
@@ -205,12 +218,15 @@ export default BlogPost;
 ```ts
 import { GetStaticProps, GetStaticPaths } from 'next';
 import { getDataHooksProps } from 'next-data-hooks';
-import BlogPost, { useBlogPost } from 'routes/blog/components/blog-post';
+import BlogPost from 'routes/blog/components/blog-post';
 
 export const getStaticPaths: GetStaticPaths = {}; /* ... */
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const dataHooksProps = getDataHooksProps({ context, hooks: [useBlogPost] });
+  const dataHooksProps = getDataHooksProps({
+    context,
+    dataHooks: BlogPost.dataHooks,
+  });
   return { props: dataHooksProps };
 };
 
@@ -219,81 +235,6 @@ export default BlogPost;
 ```
 
 > **👋 Note:** the above is just an example of how you can use `next-data-hooks` to organize your project. The main takeaway is that you can re-export page components to change the structure and `next-data-hooks` works well with this pattern.
-
-### Co-located queries
-
-This pattern can be particularly useful if you're writing a component that requires dynamic data but you don't want to worry about how that data gets to your component.
-
-For example, let's say you have a `Header` component that's nested in a `Layout` component.
-
-With `next-data-hooks`, you write the query closer to the component.
-
-#### `header.tsx`
-
-```tsx
-import { createDataHook } from 'next-data-hooks';
-
-// Write a query closer to the component
-export const useHeaderData = createDataHook('Header', async (context) => {
-  // pull header data...
-});
-
-function Header() {
-  const headerData = useHeaderData();
-
-  return <>{/* use `headerData` */}</>;
-}
-
-export default Header;
-```
-
-#### `layout.tsx`
-
-Then you can use the component anywhere else in your component tree. Note how this component is unaware of the header data.
-
-```tsx
-import Header from './header';
-
-interface Props {
-  // ...
-}
-
-function Layout({ children }: Props) {
-  return (
-    <>
-      <Header />
-      <main>{children}</main>
-    </>
-  );
-}
-
-export default Layout;
-```
-
-#### `my-page.tsx`
-
-Finally, wire-up the hooks in one place.
-
-```tsx
-// my-page.tsx
-import { GetStaticProps } from 'next';
-import { useHeaderData } from 'components/header';
-import MyPage from 'routes/my-page';
-
-export const getStaticProps: GetStaticProps = async (context) => {
-  const dataHooksProps = await getDataHooksProps({
-    context,
-    // include it once here and it'll wire up the data hook wherever it's used
-    hooks: [useHeaderData],
-  });
-
-  return {
-    props: { ...dataHooksProps },
-  };
-};
-
-export default MyPage;
-```
 
 ## Code elimination
 
