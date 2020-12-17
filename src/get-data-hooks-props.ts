@@ -5,19 +5,19 @@ type DataHook = ReturnType<typeof createDataHook>;
 
 interface Params {
   context: GetStaticPropsContext;
-  hooks: DataHook[];
+  dataHooks: DataHook[];
 }
 
 /**
  * Pulls the data from the next-data-hooks and returns the props to be received
  * by the NextDataHooksProvider
  */
-async function getDataHooksProps({ hooks, context }: Params) {
+async function getDataHooksProps({ dataHooks, context }: Params) {
   const hookKeys: { [key: string]: boolean } = {};
 
   // we allow the same function reference to be added to the array more than
   // once so we de-dupe here
-  const deDupedHooks = Array.from(new Set(hooks));
+  const deDupedHooks = Array.from(new Set(dataHooks));
 
   for (const hook of deDupedHooks) {
     if (hookKeys[hook.key]) {
@@ -29,7 +29,7 @@ async function getDataHooksProps({ hooks, context }: Params) {
   }
 
   const entries = await Promise.all(
-    hooks.map(async (hook) => {
+    dataHooks.map(async (hook) => {
       const data = await hook.getData(context);
       return [hook.key, data] as [string, any];
     })
