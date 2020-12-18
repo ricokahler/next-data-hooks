@@ -2,7 +2,33 @@
 
 > Use `getStaticProps` as react hooks
 
+```js
+import { createDataHook } from 'next-data-hooks';
+
+const useBlogPost = createDataHook('BlogPost', async (context) => {
+  const { slug } = context.params;
+  
+  return // ... get the blog post
+});
+
+function BlogPost() {
+  const { title, content } = useBlogPost();
+  
+  return (
+    <>
+      <h1>{title}</h1>
+      <p>{content}</p>
+    </>
+  );
+}
+
+BlogPost.dataHooks = [useBlogPost];
+
+export default BlogPost;
+```
+
 ## Why?
+
 
 Writing one large query per page doesn't organize well. Asynchronous data fetching frameworks like apollo, relay, and react-query already allow you to write the queries closer to the component.
 
