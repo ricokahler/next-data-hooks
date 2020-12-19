@@ -2,6 +2,8 @@
 
 > Use `getStaticProps` as react hooks
 
+`next-data-hooks` is a small and simple lib that lets you write React hooks for static data queries in Next.js by lifting static props into React Context.
+
 ```js
 import { createDataHook } from 'next-data-hooks';
 
@@ -29,12 +31,8 @@ export default BlogPost;
 
 ## Why?
 
-
-Writing one large query per page doesn't organize well. Asynchronous data fetching frameworks like apollo, relay, and react-query already allow you to write the queries closer to the component.
-
-Why can't static data queries be written closer to the component too?
-
-`next-data-hooks` is a small and simple lib that lets you write React hooks for static data queries in Next.js by lifting static props into React Context.
+1. Writing one large query per page doesn't organize well. Asynchronous data fetching frameworks like apollo, relay, and react-query already allow you to write the queries closer to the component. Why can't static data queries be written closer to the component too?
+2. Works better with TypeScript — when you import a data hook, you're also importing its return type. When you call the hook inside your component, the types are already there.
 
 ## Example
 
