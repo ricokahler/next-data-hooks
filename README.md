@@ -52,7 +52,19 @@ or
 yarn add next-data-hooks
 ```
 
-2. Add Provider to `_app.tsx` or `_app.js`
+2. Add the babel plugin
+
+At the root, add a `.babelrc` file that contains the following:
+
+```json
+{
+  "presets": ["next/babel"],
+  "plugins": ["next-data-hooks/babel"]
+}
+```
+> ⚠️ Don't forget this step. This enables [**code elimination**](#code-elimination) to eliminate server-side code in client code.
+
+3. Add the provider to `_app.tsx` or `_app.js`
 
 ```tsx
 import { AppProps } from 'next/app';
@@ -68,19 +80,6 @@ function App({ Component, pageProps }: AppProps) {
   );
 }
 ```
-
-3. Add the babel plugin
-
-At the root, add a `.babelrc` file that contains the following:
-
-```json
-{
-  "presets": ["next/babel"],
-  "plugins": ["next-data-hooks/babel"]
-}
-```
-
-> ⚠️ Don't forget this step. This enables [**code elimination**](#code-elimination) to eliminate server-side code in client code.
 
 ## Usage
 
