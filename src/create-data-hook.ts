@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { GetStaticPropsContext } from 'next';
+import { GetStaticPropsContext, GetServerSidePropsContext } from 'next';
 import NextDataHooksContext from './next-data-hooks-context';
 
 const stub = () => {
@@ -17,7 +17,9 @@ const stub = () => {
  */
 function createDataHook<R>(
   key: string,
-  getData: (variables: GetStaticPropsContext) => Promise<R>
+  getData: (
+    variables: GetStaticPropsContext | GetServerSidePropsContext
+  ) => Promise<R>
 ) {
   function useData(): R {
     const dataHooksContext = useContext(NextDataHooksContext);
