@@ -1,21 +1,21 @@
 # next-data-hooks · [![codecov](https://codecov.io/gh/ricokahler/next-data-hooks/branch/main/graph/badge.svg)](https://codecov.io/gh/ricokahler/next-data-hooks) [![github status checks](https://badgen.net/github/checks/ricokahler/next-data-hooks/main)](https://github.com/ricokahler/next-data-hooks/actions) [![bundlephobia](https://badgen.net/bundlephobia/minzip/next-data-hooks)](https://bundlephobia.com/result?p=next-data-hooks)
 
-> Use `getStaticProps` as react hooks
+> Use `getStaticProps` and `getServerSideProps` as react hooks
 
-`next-data-hooks` is a small and simple lib that lets you write React hooks for static data queries in Next.js by lifting static props into React Context.
+`next-data-hooks` is a small and simple lib that lets you write React hooks for data queries in Next.js by lifting static props into React Context.
 
 ```js
 import { createDataHook } from 'next-data-hooks';
 
 const useBlogPost = createDataHook('BlogPost', async (context) => {
   const { slug } = context.params;
-  
-  return // ... get the blog post
+
+  return; // ... get the blog post
 });
 
 function BlogPost() {
   const { title, content } = useBlogPost();
-  
+
   return (
     <>
       <h1>{title}</h1>
@@ -62,6 +62,7 @@ At the root, add a `.babelrc` file that contains the following:
   "plugins": ["next-data-hooks/babel"]
 }
 ```
+
 > ⚠️ Don't forget this step. This enables [**code elimination**](#code-elimination) to eliminate server-side code in client code.
 
 3. Add the provider to `_app.tsx` or `_app.js`
@@ -145,6 +146,7 @@ export const getStaticPaths: GetStaticPaths = async (context) => {
   // return static paths...
 };
 
+// NOTE: this will also work with `getServerSideProps`
 export const getStaticProps: GetStaticProps = async (context) => {
   const dataHooksProps = await getDataHooksProps({
     context,
@@ -231,7 +233,7 @@ function BlogPost() {
   );
 }
 
-BlogPost.dataHooks = [useBlogPostData]
+BlogPost.dataHooks = [useBlogPostData];
 
 export default BlogPost;
 ```
