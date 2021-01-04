@@ -103,7 +103,13 @@ const useBlogPost = createDataHook('BlogPost', async (context) => {
 export default useBlogPost;
 ```
 
+<details>
+<summary>
+TypeScript User?
+
 > Note: For TypeScript users, if you're planning on only using the data hook in the context of `getServerSideProps`, you can import the provided [type guard](https://www.typescriptlang.org/docs/handbook/advanced-types.html#user-defined-type-guards), `isServerSidePropsContext`, to narrow the type of the incoming context.
+
+</summary>
 
 ```tsx
 import { createDataHook, isServerSidePropsContext } from 'next-data-hooks';
@@ -119,6 +125,8 @@ const useServerSideData = createDataHook('Data', async (context) => {
 
 export default useServerSideData;
 ```
+
+</details>
 
 2. Use the data hook in a component. Add it to a static prop in an array with other data hooks to compose them downward.
 
