@@ -286,6 +286,34 @@ export default BlogPost;
 
 > **👋 Note:** the above is just an example of how you can use `next-data-hooks` to organize your project. The main takeaway is that you can re-export page components to change the structure and `next-data-hooks` works well with this pattern.
 
+### Composing data hooks
+
+Each data hook exposes a `getData` method which is simply the function you pass into `createDataHook`.
+
+This can be used within other data hooks to pull the same data:
+
+```tsx
+import { createDataHook } from 'next-data-hooks';
+
+const useHook = createDataHook('DataHook', async (context) => {
+  return; // ...
+});
+
+export default useHook;
+```
+
+```tsx
+import useHook from './';
+
+const useOtherHook = createDataHook('Other', async (context) => {
+  const data = await useHook.getData(context);
+
+  // use data to do something…
+});
+```
+
+> **👋 Note:** Be aware that this method re-runs the function.
+
 ## Code elimination
 
 For smaller bundles, Next.js eliminates code that is only intended to run inside `getStaticProps`.
