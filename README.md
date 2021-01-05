@@ -312,7 +312,7 @@ const useOtherHook = createDataHook('Other', async (context) => {
 });
 ```
 
-> Note: Be aware that this method re-runs the function.
+> **👋 Note:** Be aware that this method re-runs the function.
 
 ## Code elimination
 
