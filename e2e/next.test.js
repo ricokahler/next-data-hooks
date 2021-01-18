@@ -17,11 +17,17 @@ conditionalIt(
     await exec('yarn --cwd ./test-app build');
     await exec('yarn --cwd ./test-app export');
 
+    let caught = false;
+
     try {
       await exec('grep -r ./test-app/out -e get-blog-posts-side-effect -q');
-    } catch {
+    } catch (e) {
       // we expect grep to throw because it shouldn't find that code
+      expect(e).toBeDefined();
+      caught = true;
     }
+
+    expect(caught).toBe(true);
 
     // a control: we do expect grep to find something here
     await exec('grep -r ./test-app/out -e lorem -q');
