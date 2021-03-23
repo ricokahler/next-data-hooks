@@ -1,5 +1,3 @@
-import { getDataHooksProps } from 'next-data-hooks';
-import { GetStaticProps } from 'next';
 import BlogPost from 'routes/blogs/blog-post';
 import getBlogPosts from 'helpers/get-blog-posts';
 
@@ -11,15 +9,8 @@ export const getStaticPaths = async () => {
     fallback: false,
   };
 };
-export const getStaticProps: GetStaticProps = async (context) => {
-  const dataHooksProps = await getDataHooksProps({
-    context,
-    dataHooks: BlogPost.dataHooks,
-  });
-
-  return {
-    props: { ...dataHooksProps },
-  };
-};
 
 export default BlogPost;
+
+// FIXME: this is required to trigger something in webpack
+module.exports;

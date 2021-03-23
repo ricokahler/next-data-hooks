@@ -24,6 +24,4 @@ function BlogPost() {
   );
 }
 
-BlogPost.dataHooks = [useBlogPost];
-
 export default BlogPost;

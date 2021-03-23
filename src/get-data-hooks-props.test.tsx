@@ -58,7 +58,7 @@ it('throws if it encounters two data hooks with the same key', async () => {
     });
   } catch (e) {
     expect(e).toMatchInlineSnapshot(
-      `[Error: Found duplicate hook key "Hook". Ensure all hook keys per \`createDatHooksProps\` call are unique.]`
+      `[Error: Found duplicate hook key "Hook". Ensure all hook keys per \`createDataHooksProps\` call are unique.]`
     );
     caught = true;
   }

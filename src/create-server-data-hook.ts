@@ -1,16 +1,16 @@
-import { GetStaticPropsContext } from 'next';
+import { GetServerSidePropsContext } from 'next';
 import useData from './use-data';
 
 /**
- * Creates a data hook.
+ * Creates a server data hook, the `getServerSideProps` equivilent of `createDataHook`
  *
  * @param key The key to uniquely identify this data hooks from other on the same page.
- * @param getData An async for data that will be called via `getStaticProps` in next.js
+ * @param getData An async for data that will be called via `getServerSideProps` in next.js
  * @return A hook that can be used in any component within the page's React tree
  */
-function createDataHook<R>(
+function createServerDataHook<R>(
   key: string,
-  getData: (context: GetStaticPropsContext) => Promise<R>
+  getData: (context: GetServerSidePropsContext) => Promise<R>
 ) {
   // The babel plugin rewrites function calls to this, so this should never be directly called.
   if (typeof window !== 'undefined') {
@@ -22,8 +22,8 @@ function createDataHook<R>(
   return Object.assign(() => useData<R>(key), {
     key,
     getData: getData,
-    server: false,
+    server: true,
   });
 }
 
-export default createDataHook;
+export default createServerDataHook;
