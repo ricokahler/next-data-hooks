@@ -11,6 +11,3 @@ export const getStaticPaths = async () => {
 };
 
 export default BlogPost;
-
-// FIXME: this is required to trigger something in webpack
-module.exports;
