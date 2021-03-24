@@ -1,5 +1,12 @@
-import { GetServerSideProps, GetStaticPropsContext } from 'next';
-import useData from './use-data';
+import { useContext } from 'react';
+import { GetStaticPropsContext, GetServerSidePropsContext } from 'next';
+import NextDataHooksContext from './next-data-hooks-context';
+
+const stub = () => {
+  throw new Error(
+    'Create data hook was run in the browser. See https://github.com/ricokahler/next-data-hooks#code-elimination'
+  );
+};
 
 /**
  * Creates a data hook.
@@ -10,19 +17,32 @@ import useData from './use-data';
  */
 function createDataHook<R>(
   key: string,
-  getData: (context: GetStaticPropsContext | GetServerSideProps) => Promise<R>
+  getData: (
+    variables: GetStaticPropsContext | GetServerSidePropsContext
+  ) => Promise<R>
 ) {
-  // The babel plugin rewrites function calls to this, so this should never be directly called.
-  if (typeof window !== 'undefined') {
-    throw new Error(
-      'Create data hook was run in the browser. See https://github.com/ricokahler/next-data-hooks#code-elimination'
-    );
+  function useData(): R {
+    const dataHooksContext = useContext(NextDataHooksContext);
+    if (!dataHooksContext) {
+      throw new Error(
+        'Could not find `NextDataHooksContext`. Ensure `NextDataHooksProvider` is configured correctly.'
+      );
+    }
+    const dataHooksValue = dataHooksContext[key];
+    if (!Object.keys(dataHooksContext).includes(key)) {
+      throw new Error(
+        `Did not find a data hook named "${key}". Ensure it was provided to getDataHooksProps.`
+      );
+    }
+
+    return dataHooksValue;
   }
 
-  return Object.assign(() => useData<R>(key), {
+  return Object.assign(useData, {
+    // After running it through the babel plugin, the `getData` arg will be
+    // undefined in the browser
+    getData: getData || stub,
     key,
-    getData: getData,
-    server: false,
   });
 }
 

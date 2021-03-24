@@ -1,12 +1,12 @@
-import { GetServerSidePropsContext, GetStaticPropsContext } from 'next';
+import { GetStaticPropsContext } from 'next';
+import { ComponentType } from 'react';
 import createDataHook from './create-data-hook';
-import isServerSidePropsContext from './is-server-side-props-context';
 
 type DataHook = ReturnType<typeof createDataHook>;
 
 interface Params {
-  context: GetStaticPropsContext | GetServerSidePropsContext;
-  dataHooks: DataHook[];
+  context: GetStaticPropsContext;
+  dataHooks: DataHook[] | ComponentType;
 }
 
 /**
@@ -14,13 +14,13 @@ interface Params {
  * by the NextDataHooksProvider
  */
 async function getDataHooksProps({ dataHooks, context }: Params) {
-  const isServerContext = isServerSidePropsContext(context);
-
   const hookKeys: { [key: string]: boolean } = {};
+
+  const hooks: DataHook[] = (dataHooks as any).dataHooks || dataHooks;
 
   // we allow the same function reference to be added to the array more than
   // once so we de-dupe here
-  const deDupedHooks = Array.from(new Set(dataHooks));
+  const deDupedHooks = Array.from(new Set(hooks));
 
   for (const hook of deDupedHooks) {
     if (hookKeys[hook.key]) {
@@ -31,15 +31,8 @@ async function getDataHooksProps({ dataHooks, context }: Params) {
     hookKeys[hook.key] = true;
   }
 
-  const invalidSSPHook = !isServerContext && dataHooks.find(hook => hook.server);
-  if (invalidSSPHook) {
-    throw new Error(
-      `Found ServerSideProps hook with key "${invalidSSPHook.key}" called with \`getStaticProps\`. Switch to \`getServerSideProps\``
-    );
-  }
-
   const entries = await Promise.all(
-    dataHooks.map(async (hook) => {
+    deDupedHooks.map(async (hook) => {
       const data = await hook.getData(context);
       return [hook.key, data] as [string, any];
     })
