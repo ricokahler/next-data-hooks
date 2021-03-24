@@ -1,4 +1,4 @@
-import { GetStaticPropsContext } from 'next';
+import { GetServerSideProps, GetStaticPropsContext } from 'next';
 import useData from './use-data';
 
 /**
@@ -10,7 +10,7 @@ import useData from './use-data';
  */
 function createDataHook<R>(
   key: string,
-  getData: (context: GetStaticPropsContext) => Promise<R>
+  getData: (context: GetStaticPropsContext | GetServerSideProps) => Promise<R>
 ) {
   // The babel plugin rewrites function calls to this, so this should never be directly called.
   if (typeof window !== 'undefined') {
