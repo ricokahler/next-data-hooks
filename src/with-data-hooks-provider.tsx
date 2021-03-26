@@ -6,7 +6,7 @@ import NextDataHooksContext from "./next-data-hooks-context";
 /**
  * Higher order component that wraps an app in the Next Data Hook Context.
  */
-function DataHooksApp(Comp: AppType | typeof App): AppType {
+function withDataHooksProvider(Comp: AppType | typeof App): AppType {
   const app = function(props: AppProps) {
     return <NextDataHooksContext.Provider value={props?.pageProps?.nextDataHooks}>
       <Comp {...props} />
@@ -16,4 +16,4 @@ function DataHooksApp(Comp: AppType | typeof App): AppType {
   return app as any;
 }
 
-export default DataHooksApp;
+export default withDataHooksProvider;
