@@ -11,10 +11,11 @@ export const getStaticPaths = async () => {
     fallback: false,
   };
 };
+
 export const getStaticProps: GetStaticProps = async (context) => {
   const dataHooksProps = await getDataHooksProps({
     context,
-    dataHooks: BlogPost.dataHooks,
+    dataHooks: BlogPost,
   });
 
   return {

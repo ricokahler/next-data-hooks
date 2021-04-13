@@ -30,6 +30,4 @@ function BlogPostIndex() {
   );
 }
 
-BlogPostIndex.dataHooks = [useBlogPostIndex];
-
 export default BlogPostIndex;
