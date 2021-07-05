@@ -37,7 +37,7 @@
     "@typescript-eslint/parser": "4.28.1",
     "babel-eslint": "10.1.0",
     "common-tags": "1.8.0",
-    "create-next-app": "10.2.3",
+    "create-next-app": "11.0.1",
     "eslint": "7.30.0",
     "eslint-config-react-app": "6.0.0",
     "eslint-plugin-flowtype": "5.8.0",
@@ -47,7 +47,7 @@
     "eslint-plugin-react-hooks": "4.2.0",
     "folder-hash": "4.0.1",
     "jest": "27.0.6",
-    "next": "10.2.3",
+    "next": "11.0.1",
     "prettier": "2.3.2",
     "react": "17.0.2",
     "react-dom": "17.0.2",
@@ -58,6 +58,6 @@
   },
   "peerDependencies": {
     "react": "^16.8 || ^17",
-    "next": "^9.3 || ^10"
+    "next": "^9.3 || ^10 || ^11.0.0"
   }
 }
