@@ -8,7 +8,8 @@
     "strict": true,
     "esModuleInterop": true,
     "emitDeclarationOnly": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true
   },
   "exclude": ["**/*.test.tsx"],
   "include": ["./src/**/*.tsx", "./src/**/*.ts"]
