@@ -1,6 +1,6 @@
 {
   "name": "next-data-hooks",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "Use `getStaticProps` as react hooks",
   "private": true,
   "scripts": {
