@@ -29,7 +29,7 @@
     "@rollup/plugin-node-resolve": "11.2.1",
     "@types/common-tags": "1.8.1",
     "@types/jest": "27.4.1",
-    "@types/react": "17.0.39",
+    "@types/react": "17.0.40",
     "@types/react-dom": "17.0.13",
     "@types/react-test-renderer": "17.0.1",
     "@types/webpack": "4.41.32",
@@ -43,7 +43,7 @@
     "eslint-plugin-flowtype": "5.10.0",
     "eslint-plugin-import": "2.25.4",
     "eslint-plugin-jsx-a11y": "6.5.1",
-    "eslint-plugin-react": "7.29.3",
+    "eslint-plugin-react": "7.29.4",
     "eslint-plugin-react-hooks": "4.3.0",
     "folder-hash": "4.0.2",
     "jest": "27.5.1",
@@ -53,7 +53,7 @@
     "react-dom": "17.0.2",
     "react-error-boundary": "3.1.4",
     "react-test-renderer": "17.0.2",
-    "rollup": "2.69.2",
+    "rollup": "2.70.0",
     "typescript": "4.6.2"
   },
   "peerDependencies": {
