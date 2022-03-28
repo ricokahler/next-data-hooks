@@ -29,7 +29,7 @@
     "@rollup/plugin-node-resolve": "11.2.1",
     "@types/common-tags": "1.8.1",
     "@types/jest": "27.4.1",
-    "@types/react": "17.0.41",
+    "@types/react": "17.0.43",
     "@types/react-dom": "17.0.14",
     "@types/react-test-renderer": "17.0.1",
     "@types/webpack": "4.41.32",
@@ -48,13 +48,13 @@
     "folder-hash": "4.0.2",
     "jest": "27.5.1",
     "next": "12.1.0",
-    "prettier": "2.6.0",
+    "prettier": "2.6.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-error-boundary": "3.1.4",
     "react-test-renderer": "17.0.2",
     "rollup": "2.70.1",
-    "typescript": "4.6.2"
+    "typescript": "4.6.3"
   },
   "peerDependencies": {
     "react": "^16.8 || ^17",
