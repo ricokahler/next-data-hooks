@@ -34,6 +34,14 @@ export default BlogPost;
 1. Writing one large query per page doesn't organize well. Asynchronous data fetching frameworks like apollo, relay, and react-query already allow you to write the queries closer to the component. Why can't static data queries be written closer to the component too?
 2. Works better with TypeScript — when you import a data hook, you're also importing its return type. When you call the hook inside your component, the types are already there.
 
+## Why not?
+
+The primary thing this library offers is a pattern _organizing_ `getStaticProps`/`getServerSideProps`.
+
+⚠️ Note: **It does not offer any more capabilities than vanilla Next.js.**
+
+See this question: [Why aren't the data hooks parameterized?](https://github.com/ricokahler/next-data-hooks/issues/196)
+
 ## Example
 
 See [the example in this repo](https://github.com/ricokahler/next-data-hooks/tree/main/examples/next-data-hooks-example) for some ideas on how to organize your static data calls using this hook.
