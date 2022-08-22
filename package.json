@@ -28,7 +28,7 @@
     "@rollup/plugin-babel": "5.3.1",
     "@rollup/plugin-node-resolve": "13.3.0",
     "@types/common-tags": "1.8.1",
-    "@types/jest": "28.1.6",
+    "@types/jest": "28.1.7",
     "@types/react": "18.0.17",
     "@types/react-dom": "18.0.6",
     "@types/react-test-renderer": "18.0.0",
