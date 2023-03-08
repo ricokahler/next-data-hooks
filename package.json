@@ -1,6 +1,6 @@
 {
   "name": "next-data-hooks",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "Use `getStaticProps` as react hooks",
   "private": true,
   "scripts": {
@@ -58,6 +58,6 @@
   },
   "peerDependencies": {
     "react": "^16.8 || ^17 || ^18.0.0",
-    "next": "^9.3 || ^10 || ^11.0.0 || ^12.0.0"
+    "next": "^9.3 || ^10 || ^11.0.0 || ^12.0.0 || ^13.0.0"
   }
 }
