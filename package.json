@@ -43,7 +43,7 @@
     "eslint-plugin-flowtype": "8.0.3",
     "eslint-plugin-import": "2.29.1",
     "eslint-plugin-jsx-a11y": "6.8.0",
-    "eslint-plugin-react": "7.34.0",
+    "eslint-plugin-react": "7.34.1",
     "eslint-plugin-react-hooks": "4.6.0",
     "folder-hash": "4.0.4",
     "jest": "28.1.3",
