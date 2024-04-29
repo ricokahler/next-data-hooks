@@ -31,7 +31,7 @@
     "@types/jest": "29.5.12",
     "@types/react": "18.2.79",
     "@types/react-dom": "18.2.25",
-    "@types/react-test-renderer": "18.0.7",
+    "@types/react-test-renderer": "18.3.0",
     "@types/webpack": "5.28.5",
     "@typescript-eslint/eslint-plugin": "7.7.1",
     "@typescript-eslint/parser": "7.7.1",
