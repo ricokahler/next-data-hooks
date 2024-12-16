@@ -22,7 +22,7 @@
     "@babel/node": "7.26.0",
     "@babel/plugin-transform-runtime": "7.25.9",
     "@babel/preset-env": "7.26.0",
-    "@babel/preset-react": "7.25.9",
+    "@babel/preset-react": "7.26.3",
     "@babel/preset-typescript": "7.26.0",
     "@ricokahler/exec": "1.1.0",
     "@rollup/plugin-babel": "5.3.1",
