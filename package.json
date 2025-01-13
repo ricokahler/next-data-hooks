@@ -35,7 +35,7 @@
     "@types/webpack": "5.28.5",
     "@typescript-eslint/eslint-plugin": "8.19.0",
     "@typescript-eslint/parser": "8.19.0",
-    "@babel/eslint-parser": "7.25.9",
+    "@babel/eslint-parser": "7.26.5",
     "common-tags": "1.8.2",
     "create-next-app": "13.4.19",
     "eslint": "8.57.1",
