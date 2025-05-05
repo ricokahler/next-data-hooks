@@ -30,7 +30,7 @@
     "@types/common-tags": "1.8.4",
     "@types/jest": "29.5.14",
     "@types/react": "18.3.20",
-    "@types/react-dom": "18.3.6",
+    "@types/react-dom": "18.3.7",
     "@types/react-test-renderer": "18.3.1",
     "@types/webpack": "5.28.5",
     "@typescript-eslint/eslint-plugin": "8.31.0",
