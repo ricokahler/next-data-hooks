@@ -29,7 +29,7 @@
     "@rollup/plugin-node-resolve": "13.3.0",
     "@types/common-tags": "1.8.4",
     "@types/jest": "29.5.14",
-    "@types/react": "19.2.7",
+    "@types/react": "18.3.27",
     "@types/react-dom": "19.2.3",
     "@types/react-test-renderer": "18.3.1",
     "@types/webpack": "5.28.5",
