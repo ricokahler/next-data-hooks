@@ -38,7 +38,7 @@
     "@babel/eslint-parser": "7.28.6",
     "common-tags": "1.8.2",
     "create-next-app": "13.4.19",
-    "eslint": "8.57.1",
+    "eslint": "10.0.0",
     "eslint-config-react-app": "7.0.1",
     "eslint-plugin-flowtype": "8.0.3",
     "eslint-plugin-import": "2.32.0",
